@@ -11,8 +11,8 @@ These scripts can be used as standalone tools or integrated into **CI/CD pipelin
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/yourusername/devops-python-scripts.git
-cd devops-python-scripts
+git clone https://github.com/Dinesh-Arivu/Python-Codes-for-Day-to-Day-DevOps-Tasks.git
+cd Python-Codes-for-Day-to-Day-DevOps-Tasks
 ```
 
 2. Install required Python libraries:
@@ -24,7 +24,7 @@ pip install psutil docker kubernetes requests
 3. Run any script individually:
 
 ```bash
-python disk_usage_monitor.py
+python disk_usage.py
 ```
 
 4. Optional: Schedule scripts using **cron jobs** or integrate into **CI/CD pipelines**.
