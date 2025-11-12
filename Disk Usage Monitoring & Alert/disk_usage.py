@@ -12,6 +12,8 @@ SMTP_SERVER = "localhost"  # Change if using external SMTP
 total, used, free = shutil.disk_usage("/")
 usage = (used / total) * 100
 
+print(f"Current disk usage: {usage:.2f}%")
+
 if usage > THRESHOLD:
     subject = "Disk Usage Alert"
     body = f"Warning! Disk usage is at {usage:.2f}% on root (/)."
