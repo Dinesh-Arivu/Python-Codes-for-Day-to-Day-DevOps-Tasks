@@ -16,6 +16,7 @@ os.makedirs(ARCHIVE_DIR, exist_ok=True)
 for filename in os.listdir(LOG_DIR):
     path = os.path.join(LOG_DIR, filename)
     if os.path.isfile(path) and filename.endswith(".log"):
+        print(f"Checking {path} ...")
         file_age = now - os.stat(path).st_mtime
         if file_age > LOG_RETENTION_DAYS * 86400:
             archive_path = os.path.join(ARCHIVE_DIR, filename + ".gz")
