@@ -1,6 +1,6 @@
 import ssl
 import socket
-from datetime import datetime, timedelta
+from datetime import datetime, timezone
 
 # Configuration
 HOSTNAMES = ["example.com", "myapp.com"]
@@ -12,7 +12,9 @@ def check_ssl_expiry(hostname):
         with socket.create_connection((hostname, 443), timeout=5) as sock:
             with context.wrap_socket(sock, server_hostname=hostname) as ssock:
                 cert = ssock.getpeercert()
+        # Parse expiry date as timezone-aware UTC datetime
         expiry = datetime.strptime(cert['notAfter'], "%b %d %H:%M:%S %Y %Z")
+        expiry = expiry.replace(tzinfo=timezone.utc)
         return expiry
     except Exception as e:
         print(f"Error checking {hostname}: {e}")
@@ -21,7 +23,7 @@ def check_ssl_expiry(hostname):
 for host in HOSTNAMES:
     expiry_date = check_ssl_expiry(host)
     if expiry_date:
-        days_left = (expiry_date - datetime.utcnow()).days
+        days_left = (expiry_date - datetime.now(timezone.utc)).days
         print(f"{host}: SSL expires on {expiry_date} ({days_left} days left)")
         if days_left < ALERT_DAYS:
             print(f"⚠ ALERT: SSL certificate for {host} expires in {days_left} days!")
