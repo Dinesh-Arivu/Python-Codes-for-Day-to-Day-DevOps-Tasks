@@ -24,7 +24,7 @@ pip install psutil docker kubernetes requests
 3. Run any script individually:
 
 ```bash
-python disk_usage.py
+sudo python3 disk_usage.py
 ```
 
 4. Optional: Schedule scripts using **cron jobs** or integrate into **CI/CD pipelines**.
